@@ -14,7 +14,7 @@ const BookUpdateForm = () => {
     const dispatch = useDispatch()
     const { bookDetail } = useSelector(state => state.BookReducer)
 
-    const [newPrice, setnewPrice] = useState(Number(bookDetail?.price))
+    const [newPrice, setnewPrice] = useState(bookDetail?.price)
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -24,21 +24,22 @@ const BookUpdateForm = () => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        setnewPrice(Number(bookDetail?.price))
+        setnewPrice(bookDetail?.price)
+        setCurrency(bookDetail?.price)
     }, [bookDetail])
-    
+
 
     const onSubmit = (data) => {
 
         if (currency !== 0 && rawValue !== undefined) {
             let str = currency;
-            console.log("str",str)
             var a = str.replace(",", ".");
-            
-            data.price = a;
+
+            var isInclude = str?.includes(".");
+
+            data.price = isInclude ? a : (str + ".00") ;
             data.id = id
 
-            console.log("data",data)
             confirm(
                 {
                     title: "Onay",
@@ -73,9 +74,6 @@ const BookUpdateForm = () => {
             setClassName('is-invalid');
         }
     }
-
-    let sayi = Number(bookDetail?.price)
-    console.log("bookDetail", sayi)
 
     return (
         loading ?
@@ -118,18 +116,6 @@ const BookUpdateForm = () => {
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Label style={{ color: '#363062', fontWeigth: 'bold' }} for='createdAt'>Basım Tarihi</Label>
-                    <Input
-                        type='date'
-                        name='createdAt'
-                        id='createdAt'
-                        defaultValue={bookDetail?.createdAt}
-                        innerRef={register({ required: true })}
-                        invalid={errors.createdAt && true}
-
-                    />
-                </FormGroup>
-                <FormGroup>
                     <Label style={{ color: '#363062', fontWeigth: 'bold' }} for='price'>Fiyat</Label>
 
                     <CurrencyInput
@@ -143,7 +129,20 @@ const BookUpdateForm = () => {
 
                     />
                 </FormGroup>
-                <Button style={{ backgroundColor: '#363062', float: 'right' }} type='submit' className='mr-1' onClick={() => currency === 0 && setClassName('is-invalid')}>
+                <FormGroup>
+                    <Label style={{ color: '#363062', fontWeigth: 'bold' }} for='createdAt'>Basım Tarihi</Label>
+                    <Input
+                        type='date'
+                        name='createdAt'
+                        id='createdAt'
+                        defaultValue={bookDetail?.createdAt}
+                        innerRef={register({ required: true })}
+                        invalid={errors.createdAt && true}
+
+                    />
+                </FormGroup>
+
+                <Button style={{ backgroundColor: '#363062', float: 'right' }} type='submit' className='mr-1' onClick={() => (currency === 0 && rawValue === undefined) && setClassName('is-invalid')}>
                     Güncelle
                 </Button>
             </Form>

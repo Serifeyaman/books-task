@@ -18,13 +18,12 @@ const BookAddForm = () => {
 
         if (currency !== 0 && rawValue !== undefined) {
             let str = currency;
-            console.log("str", str)
             var a = str.replace(",", ".");
 
-            data.price = a
-            data.image = "http://placeimg.com/640/480/food"
+            var isInclude = a?.includes(".");
 
-            console.log("data", data)
+            data.price = isInclude ? a : (str + ".00");
+            data.image = "http://placeimg.com/640/480/food"
 
             confirm(
                 {
@@ -85,17 +84,6 @@ const BookAddForm = () => {
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Label style={{ color: '#417d7a', fontWeigth: 'bold' }} for='createdAt'>Basım Tarihi</Label>
-                    <Input
-                        type='date'
-                        name='createdAt'
-                        id='createdAt'
-                        innerRef={register({ required: true })}
-                        invalid={errors.createdAt && true}
-
-                    />
-                </FormGroup>
-                <FormGroup>
                     <Label style={{ color: '#417d7a', fontWeigth: 'bold' }} for='price'>Fiyat</Label>
 
                     <CurrencyInput
@@ -107,6 +95,18 @@ const BookAddForm = () => {
                         onValueChange={(value) => handleOnValueChange(value)}
                     />
                 </FormGroup>
+                <FormGroup>
+                    <Label style={{ color: '#417d7a', fontWeigth: 'bold' }} for='createdAt'>Basım Tarihi</Label>
+                    <Input
+                        type='date'
+                        name='createdAt'
+                        id='createdAt'
+                        innerRef={register({ required: true })}
+                        invalid={errors.createdAt && true}
+
+                    />
+                </FormGroup>
+
                 <Button style={{ backgroundColor: '#417d7a', float: 'right' }} type='submit' className='mr-1' onClick={() => currency === 0 && setClassName('is-invalid')}>
                     Ekle
                 </Button>

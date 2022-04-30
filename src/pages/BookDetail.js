@@ -1,11 +1,9 @@
 import BookDetailTable from 'components/BookDetailTable'
-import CustomAlert from 'components/CustomAlert'
 import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, CardSubtitle, CardText, CardTitle, Col, Row } from 'reactstrap'
+import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, CardTitle, Col, Row } from 'reactstrap'
 import { getBookById } from 'redux/book/action'
-import { format } from 'utility/InputElementsHelper'
 
 const BookDetail = () => {
 
@@ -16,8 +14,6 @@ const BookDetail = () => {
   useEffect(() => {
     dispatch(getBookById(id))
   }, [id])
-
-  console.log("bookDetail", bookDetail)
 
   return (
     <Fragment>
