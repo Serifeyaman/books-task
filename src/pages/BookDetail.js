@@ -32,7 +32,7 @@ const BookDetail = () => {
         <CardBody>
           <Row>
             <Col lg="4" style={{ justifyContent: 'center', display: 'flex', alignItems: 'center' }}>
-              <img src="http://placeimg.com/640/480/food" width="100%" alt='bookImage' />
+              <img src={bookDetail?.image} width="100%" alt='bookImage' />
             </Col>
             <Col lg="8">
               <BookDetailTable book={bookDetail} />

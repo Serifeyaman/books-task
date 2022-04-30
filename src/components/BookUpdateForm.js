@@ -35,7 +35,7 @@ const BookUpdateForm = () => {
             let str = currency;
             var a = str.replace(",", ".");
 
-            var isInclude = str?.includes(".");
+            var isInclude = a?.includes(".");
 
             data.price = isInclude ? a : (str + ".00") ;
             data.id = id
@@ -77,7 +77,7 @@ const BookUpdateForm = () => {
 
     return (
         loading ?
-            <Loading block={true} />
+            <Loading />
             :
             <Form id="addForm" onSubmit={handleSubmit(onSubmit)}>
                 <FormGroup>

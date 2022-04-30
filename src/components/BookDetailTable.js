@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Col, Row } from 'reactstrap'
+import { format } from 'utility/InputElementsHelper'
 
 const BookDetailTable = () => {
     const { bookDetail } = useSelector(state => state.BookReducer)
@@ -29,7 +30,7 @@ const BookDetailTable = () => {
                     <h6>Kitap Basım Tarihi:</h6>
                 </Col>
                 <Col lg="8">
-                    {bookDetail?.createdAt}
+                    {format(bookDetail?.createdAt)}
                 </Col>
 
             </Row>

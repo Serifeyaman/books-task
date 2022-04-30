@@ -20,9 +20,7 @@ const BookList = () => {
         text: "Silmek istediğinize emin misiniz?",
       },
       () => {
-        // setLoading(true);
         return BookService.deleteBook(id)
-
       },
       () => {
         dispatch(getBookList())
@@ -39,11 +37,13 @@ const BookList = () => {
     },
     {
       name: "Kitap Resmi",
-      selector: row => row.img,
+      selector: row => row.image,
       sortable: true,
       maxWidth: "15%",
       cell: (a) => {
-        return (<img alt='bookImage' src={`${a.img}`} width={80} height={80}/>)
+        return (
+        <img alt='bookImage' src={`${a.image}`} width={90} height={90}/>
+        )
       }
     },
     {
@@ -82,7 +82,7 @@ const BookList = () => {
 
       cell: (a) => {
         return (
-          <UncontrolledButtonDropdown>
+          <UncontrolledButtonDropdown >
             <DropdownToggle style={{ backgroundColor: '#22577E' }} caret>
               İşlemler
             </DropdownToggle>

@@ -16,7 +16,6 @@ export const confirm = (opts, callback, callbackRedirect) => {
             cancelButton: "btn btn-outline-danger ml-1",
         },
         confirmButtonColor: "#22577E",
-        // buttonsStyling: false,
     }).then(function (result) {
         if (result.value) {
             callback()

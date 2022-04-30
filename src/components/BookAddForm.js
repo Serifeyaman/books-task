@@ -23,7 +23,6 @@ const BookAddForm = () => {
             var isInclude = a?.includes(".");
 
             data.price = isInclude ? a : (str + ".00");
-            data.image = "http://placeimg.com/640/480/food"
 
             confirm(
                 {
@@ -59,7 +58,7 @@ const BookAddForm = () => {
 
     return (
         loading ?
-            <Loading block={true} />
+            <Loading/>
             :
             <Form id="addForm" onSubmit={handleSubmit(onSubmit)}>
                 <FormGroup>
@@ -80,6 +79,17 @@ const BookAddForm = () => {
                         id='author'
                         innerRef={register({ required: true })}
                         invalid={errors.author && true}
+
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label style={{ color: '#417d7a', fontWeigth: 'bold' }} for='author'>Resim Url</Label>
+                    <Input
+                        type='text'
+                        name='image'
+                        id='image'
+                        innerRef={register({ required: true })}
+                        invalid={errors.image && true}
 
                     />
                 </FormGroup>

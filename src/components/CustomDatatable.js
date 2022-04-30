@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, CardBody, CardHeader, CardTitle, Col, Row } from 'reactstrap'
+import { Button, Card, CardHeader, CardTitle, Col, Row } from 'reactstrap'
 import DataTable from 'react-data-table-component'
 import { ChevronDown, ChevronLeft, ChevronRight, PlusCircle } from 'react-feather'
 import { Link } from 'react-router-dom'
@@ -13,7 +13,7 @@ const CustomDatatable = ({ data, columns, title, routeUrl }) => {
     const [currentPage, setCurrentPage] = useState(0)
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
-    const [showDataCount, setShowDataCount] = useState(10)
+    const [showDataCount, setShowDataCount] = useState(6)
 
     useEffect(() => {
         const endOffset = itemOffset + showDataCount;
@@ -60,7 +60,6 @@ const CustomDatatable = ({ data, columns, title, routeUrl }) => {
                 </Row>
 
             </CardHeader>
-            {/* <CardBody> */}
             {
                 data?.length > 0 ?
                     <DataTable
@@ -72,7 +71,6 @@ const CustomDatatable = ({ data, columns, title, routeUrl }) => {
                         columns={columns}
                         sortIcon={<ChevronDown size={10} />}
                         paginationComponent={() => <ReactPaginate
-                            // breakLabel="..."
                             nextLabel={<Next />}
                             onPageChange={handlePageClick}
                             pageRangeDisplayed={5}
@@ -95,10 +93,7 @@ const CustomDatatable = ({ data, columns, title, routeUrl }) => {
                     />
                     :
                     <CustomAlert message="Veri Bulunamadı" />
-
             }
-            {/* </CardBody> */}
-
 
         </Card>
     )
