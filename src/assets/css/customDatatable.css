@@ -1,0 +1,18 @@
+.dataTableCard{
+    display: flex;
+    margin: auto;
+    border-radius: 8;
+    background-color: #fff;
+    width: 98%;
+    height: 95%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 1%;
+}
+
+.dataTableAddButton{
+    background-color: #22577e !important;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}

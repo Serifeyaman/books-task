@@ -5,6 +5,7 @@ import { ChevronDown, ChevronLeft, ChevronRight, PlusCircle } from 'react-feathe
 import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import "assets/css/paginate.css"
+import "assets/css/customDatatable.css"
 import CustomAlert from './CustomAlert'
 
 const CustomDatatable = ({ data, columns, title, routeUrl }) => {
@@ -43,7 +44,7 @@ const CustomDatatable = ({ data, columns, title, routeUrl }) => {
     }
 
     return (
-        <Card style={{ display: 'flex', margin: 'auto', borderRadius: 8, backgroundColor: '#fff', width: '98%', height: '95%' }}>
+        <Card className='dataTableCard'>
             <CardHeader className='border-bottom'>
                 <Row className='m-3'>
                     <Col>
@@ -51,7 +52,7 @@ const CustomDatatable = ({ data, columns, title, routeUrl }) => {
                     </Col>
                     <Col>
                         <Link to={routeUrl} style={{ float: 'right', textDecorationLine: 'none' }}>
-                            <Button style={{ backgroundColor: '#22577E', alignItems: 'center', justifyContent: 'center', display: 'flex' }}>
+                            <Button className='dataTableAddButton'>
                                 <PlusCircle size={15} /> Yeni {title} Ekle
                             </Button>
                         </Link>
@@ -67,7 +68,7 @@ const CustomDatatable = ({ data, columns, title, routeUrl }) => {
                         pagination
                         striped
                         paginationServer
-                        className='react-dataTable'
+                        className='react-dataTable w-100'
                         columns={columns}
                         sortIcon={<ChevronDown size={10} />}
                         paginationComponent={() => <ReactPaginate
@@ -94,6 +95,7 @@ const CustomDatatable = ({ data, columns, title, routeUrl }) => {
                     :
                     <CustomAlert message="Veri Bulunamadı" />
             }
+
 
         </Card>
     )
